@@ -24,6 +24,9 @@ spec:
             enabled: true
             format: "json"
             timezone: "Asia/Seoul"
+        service:
+          spec:
+            externalTrafficPolicy: Local
         persistence:
           enabled: true
         certificatesResolvers: 
