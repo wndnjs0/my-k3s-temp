@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rustfs
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://charts.rustfs.com
+    chart: rustfs
+    targetRevision: 0.1.0
+    helm:
+      values: |
+        replicaCount: 1
+        mode:
+          standalone:
+            enabled: true
+          distributed:
+            enabled: false
+        secret:
+          existingSecret: rustfs
+        ingress:
+          enabled: true
+          className: "traefik" # Specify the classname, traefik or nginx. Different classname has different annotations for session sticky.
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+          hosts:
+            - host: s3.jmly.me`
+              paths:
+                - path: /
+                  pathType: Prefix
+        secret:
+          existingSecret: ""
+          rustfs:
+            access_key: rustfsadmin
+            secret_key: rustfsadmin
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rustfs
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
