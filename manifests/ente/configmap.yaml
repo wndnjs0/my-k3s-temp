@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ente-museum-config
+data:
+  local.yaml: |
+    apps:
+      photos: "https://ente.jmly.me"
+      public-albums: ""
+    # SMTP 없이 테스트하려면 아래 주석 해제 (OTP 고정값 123456 사용)
+    # internal:
+    #   hardcoded-ott: 123456

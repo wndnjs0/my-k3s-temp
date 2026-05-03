@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ente-museum
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ente-museum
+  template:
+    metadata:
+      labels:
+        app: ente-museum
+    spec:
+      containers:
+      - name: museum
+        image: ghcr.io/ente-io/museum:latest
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        volumeMounts:
+        - name: credentials
+          mountPath: /museum/credentials.yaml
+          subPath: credentials.yaml
+        - name: config
+          mountPath: /museum/local.yaml
+          subPath: local.yaml
+      volumes:
+      - name: credentials
+        secret:
+          secretName: ente-museum-credentials
+      - name: config
+        configMap:
+          name: ente-museum-config
