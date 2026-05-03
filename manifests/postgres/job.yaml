@@ -21,4 +21,3 @@ spec:
             - |
               export PGPASSWORD=${POSTGRES_PASSWORD}
               psql -h postgres -U ${POSTGRES_USER} -c "CREATE DATABASE memos" || true
-              psql -h postgres -U ${POSTGRES_USER} -c "CREATE DATABASE ente" || true
