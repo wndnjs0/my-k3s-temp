@@ -35,10 +35,7 @@ spec:
                 - path: /
                   pathType: Prefix
         secret:
-          existingSecret: ""
-          rustfs:
-            access_key: rustfsadmin
-            secret_key: rustfsadmin
+          existingSecret: "rustfs"
   destination:
     server: https://kubernetes.default.svc
     namespace: rustfs
