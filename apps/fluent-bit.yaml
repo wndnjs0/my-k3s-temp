@@ -31,7 +31,7 @@ spec:
             [FILTER]
                 Name                kubernetes
                 Match               kube.*
-                Merge_Log           On
+                Merge_Log           Off
                 Keep_Log            Off
                 K8S-Logging.Parser  On
                 K8S-Logging.Exclude On
