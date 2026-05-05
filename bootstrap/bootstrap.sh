@@ -9,5 +9,8 @@ helm upgrade -i argocd argo/argo-cd \
   -f values-argocd.yaml \
   --version 9.4.17
 
+# sealed-secrets 키 설치
+kubectl apply -f ../sealed-secrets-master-key.yaml
+
 # App of Apps 설치
 kubectl apply -f ../app-of-apps.yaml
