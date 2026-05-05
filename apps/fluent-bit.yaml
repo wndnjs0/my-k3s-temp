@@ -31,10 +31,7 @@ spec:
             [FILTER]
                 Name                kubernetes
                 Match               kube.*
-                Merge_Log           Off
-                Keep_Log            Off
-                K8S-Logging.Parser  On
-                K8S-Logging.Exclude On
+                Merge_Log           On
           outputs: |
             [OUTPUT]
                 Name            loki
