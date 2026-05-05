@@ -19,9 +19,11 @@ spec:
           auth_enabled: false
           commonConfig:
             replication_factor: 1
+          storage:
+            type: filesystem
         deploymentMode: SingleBinary
         singleBinary:
-          replicas: 1
+          replicas: 1 
           persistence:
             enabled: true
             size: 200Gi
@@ -32,6 +34,14 @@ spec:
         backend:
           replicas: 0
         gateway:
+          enabled: false
+        chunksCache:
+          enabled: false
+        resultsCache:
+          enabled: false
+        lokiCanary:
+          enabled: false
+        test:
           enabled: false
   destination:
     server: https://kubernetes.default.svc
