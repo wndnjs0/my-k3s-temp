@@ -27,9 +27,10 @@ spec:
             service:
               DISABLE_REGISTRATION: true
               REQUIRE_SIGNIN_VIEW: true
-        extraEnvVars:
-        - name: GITEA____APP_NAME
-          value: "Private Git"
+        deployment:
+          env:
+          - name: GITEA____APP_NAME
+            value: "Private Git"
         service:
           http:
             type: ClusterIP
