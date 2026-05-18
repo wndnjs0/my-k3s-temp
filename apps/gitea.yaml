@@ -20,8 +20,8 @@ spec:
             existingSecret: gitea-secrets
           config:
             server:
-              DOMAIN: git.juuuwon2.com
-              ROOT_URL: https://git.juuuwon2.com
+              DOMAIN: git.jmly.me
+              ROOT_URL: https://git.jmly.me
             database:
               DB_TYPE: sqlite3
         service:
@@ -35,7 +35,7 @@ spec:
           enabled: true
           className: traefik
           hosts:
-            - host: git.juuuwon2.com
+            - host: git.jmly.me
               paths:
                 - path: /
         persistence:
